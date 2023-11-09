@@ -45,7 +45,7 @@ public class LottoGame {
     }
 
     public void printOutNumberOfLottos() {
-        System.out.println(lottoPurchaser.returnNumberOfLottos());
+        System.out.println('\n' + lottoPurchaser.returnNumberOfLottos());
     }
 
     public Lottos createLottos() {
