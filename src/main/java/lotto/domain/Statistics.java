@@ -10,11 +10,11 @@ public class Statistics {
     private int third = 0;
     private int fourth = 0;
     private int fifth = 0;
-    private final int firstPrize = 2000000000;
-    private final int secondPrize = 30000000;
-    private final int thirdPrize = 1500000;
-    private final int fourthPrize = 50000;
-    private final int fifthPrize = 5000;
+    private static final int firstPrize = 2000000000;
+    private static final int secondPrize = 30000000;
+    private static final int thirdPrize = 1500000;
+    private static final int fourthPrize = 50000;
+    private static final int fifthPrize = 5000;
 
     public void temp(Lottos lottos, Lotto lotto, BonusNumber bonusNumber) {
         List<Lotto> allLottos = lottos.getAllLottos();
@@ -56,22 +56,21 @@ public class Statistics {
 
     public int calculateprofits() {
         int profits = 0;
-        profits += (
-                first * firstPrize +
-                        second * secondPrize +
-                        third * thirdPrize +
-                        fourth * fourthPrize +
-                        fifth * fifthPrize
+        profits += (first * firstPrize +
+                second * secondPrize +
+                third * thirdPrize +
+                fourth * fourthPrize +
+                fifth * fifthPrize
         );
         return profits;
     }
 
     @Override
     public String toString() {
-        return "3개 일치 (5,000원) - " + fifth + "개" + '\n' +
-                "4개 일치 (50,000원) - " + fourth + "개" + '\n' +
-                "5개 일치 (1,500,000원) - " + third + "개" + '\n' +
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - " + second + "개" + '\n' +
-                "6개 일치 (2,000,000,000원) - " + first + "개";
+        return "3개 일치 (" + fifthPrize + "원) - " + fifth + "개" + '\n' +
+                "4개 일치 (" + fourthPrize + "원) - " + fourth + "개" + '\n' +
+                "5개 일치 (" + thirdPrize + "원) - " + third + "개" + '\n' +
+                "5개 일치, 보너스 볼 일치 (" + secondPrize + "원) - " + second + "개" + '\n' +
+                "6개 일치 (" + firstPrize + "원) - " + first + "개";
     }
 }
