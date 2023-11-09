@@ -37,12 +37,12 @@ public class Lottos {
         setNumberOfLottos(setTotalCost(input));
     }
 
-    public int setTotalCost(String input) {
+    private int setTotalCost(String input) {
         this.totalCost = parseInt(input);
         return totalCost;
     }
 
-    public void setNumberOfLottos(int cost) {
+    private void setNumberOfLottos(int cost) {
         isSmallerthanZero(cost);
         isRightCost(cost);
         this.numberOfLottos = cost / LottoValue.COST_OF_LOTTO.getValue();
