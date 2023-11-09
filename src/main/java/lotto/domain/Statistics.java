@@ -1,9 +1,13 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Objects;
 
 public class Statistics {
+
+    LottoPurchaser lottoPurchaser = LottoPurchaser.getInstance();
 
     private int first = 0;
     private int second = 0;
@@ -19,7 +23,7 @@ public class Statistics {
     public void temp(Lottos lottos, Lotto lotto, BonusNumber bonusNumber) {
         List<Lotto> allLottos = lottos.getAllLottos();
         for (Lotto temp : allLottos) {
-            int matchedNumber = countMatchingNumbers(temp.getNumbers(), lotto.getNumbers(), bonusNumber);
+            int matchedNumber = countMatchingNumbers(temp.getNumbers(), lotto.getNumbers());
             countRank(matchedNumber, temp.getNumbers(), bonusNumber);
         }
     }
@@ -48,7 +52,7 @@ public class Statistics {
         }
     }
 
-    private int countMatchingNumbers(List<Integer> numbers1, List<Integer> numbers2, BonusNumber bonusNumber) {
+    private int countMatchingNumbers(List<Integer> numbers1, List<Integer> numbers2) {
         return (int) numbers1.stream()
                 .filter(numbers2::contains)
                 .count();
@@ -65,12 +69,20 @@ public class Statistics {
         return profits;
     }
 
+    public double calculateProfitRatio() {
+        int profit = calculateprofits();
+        double profitRatio = ((double) profit / (lottoPurchaser.getCost())) * 100;
+        BigDecimal bd = new BigDecimal(profitRatio);
+        bd = bd.setScale(1, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
+
     @Override
     public String toString() {
-        return "3개 일치 (" + fifthPrize + "원) - " + fifth + "개" + '\n' +
-                "4개 일치 (" + fourthPrize + "원) - " + fourth + "개" + '\n' +
-                "5개 일치 (" + thirdPrize + "원) - " + third + "개" + '\n' +
-                "5개 일치, 보너스 볼 일치 (" + secondPrize + "원) - " + second + "개" + '\n' +
-                "6개 일치 (" + firstPrize + "원) - " + first + "개";
+        return "3개 일치 (" + String.format("%,d", fifthPrize) + "원) - " + fifth + "개" + '\n' +
+                "4개 일치 (" + String.format("%,d", fourthPrize) + "원) - " + fourth + "개" + '\n' +
+                "5개 일치 (" + String.format("%,d", thirdPrize) + "원) - " + third + "개" + '\n' +
+                "5개 일치, 보너스 볼 일치 (" + String.format("%,d", secondPrize) + "원) - " + second + "개" + '\n' +
+                "6개 일치 (" + String.format("%,d", firstPrize) + "원) - " + first + "개";
     }
 }

@@ -25,6 +25,6 @@ public class Application {
         lottoGame.calculateStatistics();
         lottoGame.print();
 
-        lottoGame.calculateProfitRatio();
+        lottoGame.printOutProfitRatio();
     }
 }

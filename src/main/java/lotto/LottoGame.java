@@ -2,8 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -111,18 +109,13 @@ public class LottoGame {
         statistics.temp(lottos, luckyNumbers, bonusNumber);
     }
 
+    // TODO 메서드 이름 변경
     public void print() {
         System.out.println(statistics);
     }
 
-    public void calculateProfitRatio() {
-        int profit = statistics.calculateprofits();
-        System.out.println("profit = " + profit);
-        double profitRatio = ((double) profit / (lottoPurchaser.getCost())) * 100;
-        BigDecimal bd = new BigDecimal(profitRatio);
-        bd = bd.setScale(1, RoundingMode.HALF_UP);
-
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", bd);
+    public void printOutProfitRatio() {
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", statistics.calculateProfitRatio());
     }
 
 }
