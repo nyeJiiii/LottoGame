@@ -1,9 +1,9 @@
 package lotto.domain;
 
-import static lotto.output.LottoValue.COST_OF_LOTTO;
-import static lotto.output.LottoValue.END_NUMBER_OF_RANGE;
-import static lotto.output.LottoValue.LOTTO_SIZE;
-import static lotto.output.LottoValue.START_NUMBER_OF_RANGE;
+import static lotto.util.LottoValue.COST_OF_LOTTO;
+import static lotto.util.LottoValue.END_NUMBER_OF_RANGE;
+import static lotto.util.LottoValue.LOTTO_SIZE;
+import static lotto.util.LottoValue.START_NUMBER_OF_RANGE;
 
 import java.util.List;
 import lotto.errors.ErrorMessage;

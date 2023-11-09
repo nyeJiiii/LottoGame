@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.output.OutputView;
+import lotto.util.OutputView;
 
 public class Application {
     public static void main(String[] args) {

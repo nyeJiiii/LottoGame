@@ -1,4 +1,4 @@
-package lotto.output;
+package lotto.util;
 
 public enum LottoValue {
 

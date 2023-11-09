@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 import java.util.Objects;
-import lotto.output.LottoPrize;
-import lotto.output.OutputView;
+import lotto.util.LottoPrize;
+import lotto.util.OutputView;
 
 public class Statistics {
 
@@ -15,6 +15,7 @@ public class Statistics {
     private int fourth = 0;
     private int fifth = 0;
 
+    // TODO 메서드 이름 변경
     public void temp(Lottos lottos, Lotto lotto, BonusNumber bonusNumber) {
         List<Lotto> allLottos = lottos.getAllLottos();
         for (Lotto temp : allLottos) {

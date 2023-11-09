@@ -1,4 +1,4 @@
-package lotto.output;
+package lotto.util;
 
 public enum LottoPrize {
     THIRD("5개 일치", 1500000),
