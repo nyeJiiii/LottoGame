@@ -25,7 +25,7 @@ public class LottoGame {
 
     private boolean getCost() {
         try {
-            allLottos.setNumberOfLottos(Console.readLine());
+            allLottos.getInputCost(Console.readLine());
             return false;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

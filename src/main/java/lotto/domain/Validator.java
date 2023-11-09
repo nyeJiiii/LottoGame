@@ -51,7 +51,7 @@ public class Validator {
         }
     }
 
-    protected void calculateNumberOfLottos(int input) {
+    protected void isRightCost(int input) {
         if (input % COST_OF_LOTTO.getValue() != 0) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_COST.getMessage());
         }

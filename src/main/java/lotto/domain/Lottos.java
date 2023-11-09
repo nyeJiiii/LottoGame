@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lotto.util.LottoValue;
 import lotto.util.OutputView;
 
 public class Lottos extends Validator {
@@ -29,13 +30,19 @@ public class Lottos extends Validator {
         this.allLottos = lottos;
     }
 
-    public void setNumberOfLottos(String input) {
-        int cost = parseInt(input);
-        this.totalCost = cost;
+    public void getInputCost(String input) {
+        setNumberOfLottos(setTotalCost(input));
+    }
+
+    public int setTotalCost(String input) {
+        this.totalCost = parseInt(input);
+        return totalCost;
+    }
+
+    public void setNumberOfLottos(int cost) {
         isSmallerthanZero(cost);
-        // TODO 메서드 이름, 메서드 분리
-        calculateNumberOfLottos(cost);
-        this.numberOfLottos = cost / 1000;
+        isRightCost(cost);
+        this.numberOfLottos = cost / LottoValue.COST_OF_LOTTO.getValue();
     }
 
     public String returnNumberOfLottos() {
