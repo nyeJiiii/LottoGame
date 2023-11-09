@@ -114,11 +114,11 @@ public class LottoGame {
     }
 
     public void printOutStatistics() {
-        System.out.println(statistics);
+        statistics.printOutStatistics();
     }
 
     public void printOutProfitRatio() {
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", statistics.calculateProfitRatio());
+        statistics.printOutProfitRatio(lottoPurchaser.getCost());
     }
 
 }

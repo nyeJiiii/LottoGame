@@ -12,6 +12,7 @@ public class Application {
         System.out.println(OutputView.INPUT_COST.getMessage());
         lottoGame.getRightCost();
 
+        // TODO LottoPurchaser 삭제
         System.out.println("\n" + lottoPurchaser.printOutNumberOfLottos());
         System.out.println(lottoGame.createLottos());
 
@@ -24,7 +25,7 @@ public class Application {
         System.out.println(OutputView.STATISTICS.getMessage());
         lottoGame.calculateStatistics();
         lottoGame.printOutStatistics();
-
         lottoGame.printOutProfitRatio();
+
     }
 }

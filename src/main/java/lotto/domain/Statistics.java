@@ -4,35 +4,22 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 import java.util.Objects;
+import lotto.output.LottoPrize;
+import lotto.output.OutputView;
 
 public class Statistics {
-
-    LottoPurchaser lottoPurchaser = LottoPurchaser.getInstance();
 
     private int first = 0;
     private int second = 0;
     private int third = 0;
     private int fourth = 0;
     private int fifth = 0;
-    private static final int firstPrize = 2000000000;
-    private static final int secondPrize = 30000000;
-    private static final int thirdPrize = 1500000;
-    private static final int fourthPrize = 50000;
-    private static final int fifthPrize = 5000;
 
     public void temp(Lottos lottos, Lotto lotto, BonusNumber bonusNumber) {
         List<Lotto> allLottos = lottos.getAllLottos();
         for (Lotto temp : allLottos) {
             int matchedNumber = countMatchingNumbers(temp.getNumbers(), lotto.getNumbers());
             countRank(matchedNumber, temp.getNumbers(), bonusNumber);
-        }
-    }
-
-    private void checkBonusNumber(List<Integer> numbers, BonusNumber bonusNumber) {
-        if (numbers.stream()
-                .anyMatch(number -> Objects.equals(number, bonusNumber.getBonusNumber()))) {
-            second++;
-            third--;
         }
     }
 
@@ -52,6 +39,14 @@ public class Statistics {
         }
     }
 
+    private void checkBonusNumber(List<Integer> numbers, BonusNumber bonusNumber) {
+        if (numbers.stream()
+                .anyMatch(number -> Objects.equals(number, bonusNumber.getBonusNumber()))) {
+            second++;
+            third--;
+        }
+    }
+
     private int countMatchingNumbers(List<Integer> numbers1, List<Integer> numbers2) {
         return (int) numbers1.stream()
                 .filter(numbers2::contains)
@@ -60,29 +55,32 @@ public class Statistics {
 
     public int calculateprofits() {
         int profits = 0;
-        profits += (first * firstPrize +
-                second * secondPrize +
-                third * thirdPrize +
-                fourth * fourthPrize +
-                fifth * fifthPrize
+        profits += (first * LottoPrize.FIRST.getPrizeAmount() +
+                second * LottoPrize.SECOND.getPrizeAmount() +
+                third * LottoPrize.THIRD.getPrizeAmount() +
+                fourth * LottoPrize.FOURTH.getPrizeAmount() +
+                fifth * LottoPrize.FIFTH.getPrizeAmount()
         );
         return profits;
     }
 
-    public double calculateProfitRatio() {
+    public void printOutProfitRatio(int cost) {
+        System.out.printf(OutputView.TOTAL_PROFIT_RATIO.getMessage(), calculateProfitRatio(cost));
+    }
+
+    public double calculateProfitRatio(int cost) {
         int profit = calculateprofits();
-        double profitRatio = ((double) profit / (lottoPurchaser.getCost())) * 100;
+        double profitRatio = ((double) profit / (cost)) * 100;
         BigDecimal bd = new BigDecimal(profitRatio);
         bd = bd.setScale(1, RoundingMode.HALF_UP);
         return bd.doubleValue();
     }
 
-    @Override
-    public String toString() {
-        return "3개 일치 (" + String.format("%,d", fifthPrize) + "원) - " + fifth + "개" + '\n' +
-                "4개 일치 (" + String.format("%,d", fourthPrize) + "원) - " + fourth + "개" + '\n' +
-                "5개 일치 (" + String.format("%,d", thirdPrize) + "원) - " + third + "개" + '\n' +
-                "5개 일치, 보너스 볼 일치 (" + String.format("%,d", secondPrize) + "원) - " + second + "개" + '\n' +
-                "6개 일치 (" + String.format("%,d", firstPrize) + "원) - " + first + "개";
+    public void printOutStatistics() {
+        System.out.println(LottoPrize.FIFTH + " - " + fifth + "개");
+        System.out.println(LottoPrize.FOURTH + " - " + fourth + "개");
+        System.out.println(LottoPrize.THIRD + " - " + third + "개");
+        System.out.println(LottoPrize.SECOND + " - " + second + "개");
+        System.out.println(LottoPrize.FIRST + " - " + first + "개");
     }
 }
