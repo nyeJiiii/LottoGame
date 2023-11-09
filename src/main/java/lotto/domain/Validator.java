@@ -11,13 +11,13 @@ import lotto.errors.ErrorMessage;
 
 public class Validator {
 
-    protected void validate(List<Integer> numbers) {
+    public static void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_LUCKY_NUMBER_COUNT.getMessage());
         }
     }
 
-    protected void validateDuplicatedNumber(List<Integer> numbers) {
+    public static void validateDuplicatedNumber(List<Integer> numbers) {
         if (numbers.stream()
                 .distinct()
                 .count() != numbers.size()) {
@@ -25,20 +25,20 @@ public class Validator {
         }
     }
 
-    protected void validateRangeOfNumbers(List<Integer> numbers) {
+    public static void validateRangeOfNumbers(List<Integer> numbers) {
         if (numbers.stream()
                 .anyMatch(num -> num < START_NUMBER_OF_RANGE.getValue() || num > END_NUMBER_OF_RANGE.getValue())) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_NUMBER_RANGE.getMessage());
         }
     }
 
-    protected void validateRangeOfNumber(int number) {
+    public static void validateRangeOfNumber(int number) {
         if (number < START_NUMBER_OF_RANGE.getValue() || number > END_NUMBER_OF_RANGE.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_NUMBER_RANGE.getMessage());
         }
     }
 
-    protected int parseInt(String input) {
+    public static int parseInt(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -46,19 +46,19 @@ public class Validator {
         }
     }
 
-    protected void isSmallerthanZero(int input) {
+    public static void isSmallerthanZero(int input) {
         if (input <= 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_SMALLER_THAN_ZERO.getMessage());
         }
     }
 
-    protected void isRightCost(int input) {
+    public static void isRightCost(int input) {
         if (input % COST_OF_LOTTO.getValue() != 0) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_COST.getMessage());
         }
     }
 
-    protected void checkDuplicatedBonusNumber(int bonusNumber, List<Integer> luckyNumbers) {
+    public static void checkDuplicatedBonusNumber(int bonusNumber, List<Integer> luckyNumbers) {
         if (luckyNumbers.stream()
                 .anyMatch(number -> Objects.equals(number, bonusNumber))) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_BONUS_NUMBER.getMessage());

@@ -1,8 +1,12 @@
 package lotto.domain;
 
+import static lotto.domain.Validator.checkDuplicatedBonusNumber;
+import static lotto.domain.Validator.parseInt;
+import static lotto.domain.Validator.validateRangeOfNumber;
+
 import java.util.List;
 
-public class BonusNumber extends Validator {
+public class BonusNumber {
 
     private Integer bonusNumber;
 

@@ -1,10 +1,15 @@
 package lotto.domain;
 
+import static lotto.domain.Validator.parseInt;
+import static lotto.domain.Validator.validate;
+import static lotto.domain.Validator.validateDuplicatedNumber;
+import static lotto.domain.Validator.validateRangeOfNumbers;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Lotto extends Validator{
+public class Lotto {
 
     private final List<Integer> numbers;
 
@@ -29,7 +34,7 @@ public class Lotto extends Validator{
 
     private List<Integer> splitLuckyNumber(String luckyNumber) {
         return Arrays.stream(luckyNumber.trim().split("\\s*,\\s*"))
-                .map(this::parseInt)
+                .map(s -> parseInt(s))
                 .toList();
     }
 

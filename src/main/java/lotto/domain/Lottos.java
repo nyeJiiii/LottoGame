@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.domain.Validator.isRightCost;
+import static lotto.domain.Validator.isSmallerthanZero;
+import static lotto.domain.Validator.parseInt;
 import static lotto.util.RandomNumber.getSortedRandomNumber;
 
 import java.util.ArrayList;
@@ -9,7 +12,7 @@ import java.util.stream.IntStream;
 import lotto.util.LottoValue;
 import lotto.util.OutputView;
 
-public class Lottos extends Validator {
+public class Lottos {
 
     private List<Lotto> allLottos;
     private int numberOfLottos;
