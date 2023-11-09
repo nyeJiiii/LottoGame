@@ -6,6 +6,7 @@ import static lotto.util.LottoValue.LOTTO_SIZE;
 import static lotto.util.LottoValue.START_NUMBER_OF_RANGE;
 
 import java.util.List;
+import java.util.Objects;
 import lotto.errors.ErrorMessage;
 
 public class Validator {
@@ -54,6 +55,13 @@ public class Validator {
     protected void isRightCost(int input) {
         if (input % COST_OF_LOTTO.getValue() != 0) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_COST.getMessage());
+        }
+    }
+
+    protected void checkDuplicatedBonusNumber(int bonusNumber, List<Integer> luckyNumbers) {
+        if (luckyNumbers.stream()
+                .anyMatch(number -> Objects.equals(number, bonusNumber))) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_BONUS_NUMBER.getMessage());
         }
     }
 }

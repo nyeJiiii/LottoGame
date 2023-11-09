@@ -1,6 +1,8 @@
 package lotto.domain;
 
-public class BonusNumber extends Validator{
+import java.util.List;
+
+public class BonusNumber extends Validator {
 
     private Integer bonusNumber;
 
@@ -8,9 +10,10 @@ public class BonusNumber extends Validator{
         return bonusNumber;
     }
 
-    public void setBonusNumber(String input) {
+    public void setBonusNumber(String input, List<Integer> luckyNumbers) {
         int bonusNumber = parseInt(input);
         validateRangeOfNumber(bonusNumber);
+        checkDuplicatedBonusNumber(bonusNumber, luckyNumbers);
         this.bonusNumber = bonusNumber;
     }
 }

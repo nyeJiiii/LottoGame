@@ -1,13 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.List;
-import java.util.Objects;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Statistics;
-import lotto.errors.ErrorMessage;
 
 public class LottoGame {
 
@@ -68,20 +65,11 @@ public class LottoGame {
 
     private boolean getBonusNumber() {
         try {
-            bonusNumber.setBonusNumber(Console.readLine());
-            checkDuplicatedBonusNumber(bonusNumber, luckyNumbers.getNumbers());
+            bonusNumber.setBonusNumber(Console.readLine(), luckyNumbers.getNumbers());
             return false;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return true;
-        }
-    }
-
-    private void checkDuplicatedBonusNumber(BonusNumber bonusNumber, List<Integer> luckyNumbers) {
-        if (luckyNumbers.stream()
-                .anyMatch(number -> Objects.equals(number, bonusNumber.getBonusNumber()))) {
-            bonusNumber.setBonusNumber(null);
-            throw new IllegalArgumentException(ErrorMessage.WRONG_BONUS_NUMBER.getMessage());
         }
     }
 
