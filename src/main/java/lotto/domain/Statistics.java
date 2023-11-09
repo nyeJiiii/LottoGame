@@ -5,11 +5,16 @@ import java.util.Objects;
 
 public class Statistics {
 
-    private static int first = 0;
-    private static int second = 0;
-    private static int third = 0;
-    private static int fourth = 0;
-    private static int fifth = 0;
+    private int first = 0;
+    private int second = 0;
+    private int third = 0;
+    private int fourth = 0;
+    private int fifth = 0;
+    private final int firstPrize = 2000000000;
+    private final int secondPrize = 30000000;
+    private final int thirdPrize = 1500000;
+    private final int fourthPrize = 50000;
+    private final int fifthPrize = 5000;
 
     public void temp(Lottos lottos, Lotto lotto, BonusNumber bonusNumber) {
         List<Lotto> allLottos = lottos.getAllLottos();
@@ -21,24 +26,24 @@ public class Statistics {
 
     private void checkBonusNumber(List<Integer> numbers, BonusNumber bonusNumber) {
         if (numbers.stream()
-                    .anyMatch(number -> Objects.equals(number, bonusNumber.getBonusNumber()))) {
+                .anyMatch(number -> Objects.equals(number, bonusNumber.getBonusNumber()))) {
             second++;
             third--;
         }
     }
 
     private void countRank(int matchedNumber, List<Integer> numbers, BonusNumber bonusNumber) {
-        if(matchedNumber == 3) {
+        if (matchedNumber == 3) {
             fifth++;
         }
-        if(matchedNumber == 4) {
+        if (matchedNumber == 4) {
             fourth++;
         }
-        if(matchedNumber == 5) {
+        if (matchedNumber == 5) {
             third++;
             checkBonusNumber(numbers, bonusNumber);
         }
-        if(matchedNumber == 6) {
+        if (matchedNumber == 6) {
             first++;
         }
     }
@@ -51,7 +56,13 @@ public class Statistics {
 
     public int calculateprofits() {
         int profits = 0;
-        profits += (first * 2000000000 + second * 30000000 + third * 1500000 + fourth * 50000 + fifth * 5000);
+        profits += (
+                first * firstPrize +
+                        second * secondPrize +
+                        third * thirdPrize +
+                        fourth * fourthPrize +
+                        fifth * fifthPrize
+        );
         return profits;
     }
 

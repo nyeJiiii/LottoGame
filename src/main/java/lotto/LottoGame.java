@@ -19,6 +19,7 @@ import lotto.errors.ErrorMessage;
 
 public class LottoGame {
 
+
     LottoPurchaser lottoPurchaser = LottoPurchaser.getInstance();
     BonusNumber bonusNumber = new BonusNumber();
     Lotto luckyNumbers = null;
