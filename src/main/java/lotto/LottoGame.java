@@ -1,31 +1,22 @@
 package lotto;
 
-import static lotto.output.LottoValue.END_NUMBER_OF_RANGE;
-import static lotto.output.LottoValue.LOTTO_SIZE;
-import static lotto.output.LottoValue.START_NUMBER_OF_RANGE;
+import static lotto.util.RandomNumber.getSortedRandomNumber;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.LottoPurchaser;
 import lotto.domain.Lottos;
 import lotto.domain.Statistics;
 import lotto.errors.ErrorMessage;
 
 public class LottoGame {
 
-    LottoPurchaser lottoPurchaser = new LottoPurchaser();
     BonusNumber bonusNumber = new BonusNumber();
     Statistics statistics = new Statistics();
     Lotto luckyNumbers = null;
-    Lottos lottos = null;
+    Lottos allLottos = null;
 
     public void getRightCost() {
         boolean fail;
@@ -36,7 +27,7 @@ public class LottoGame {
 
     private boolean getCost() {
         try {
-            lottoPurchaser.setNumberOfLottos(Console.readLine());
+            allLottos.setNumberOfLottos(Console.readLine());
             return false;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -45,31 +36,12 @@ public class LottoGame {
     }
 
     public void printOutNumberOfLottos() {
-        System.out.println('\n' + lottoPurchaser.returnNumberOfLottos());
+        System.out.println('\n' + allLottos.returnNumberOfLottos());
     }
 
     public Lottos createLottos() {
-        lottos = new Lottos(addLottos());
-        return lottos;
-    }
-
-    public List<Lotto> addLottos() {
-        return IntStream.range(0, lottoPurchaser.getNumberOfLottos())
-                .mapToObj(i -> new Lotto(getSortedRandomNumber()))
-                .collect(Collectors.toList());
-    }
-
-    private List<Integer> getSortedRandomNumber() {
-        List<Integer> randomNumber = getRandomNumber();
-        randomNumber.sort(Comparator.naturalOrder());
-        return randomNumber;
-    }
-
-    private List<Integer> getRandomNumber() {
-        List<Integer> beforeSorted = Randoms.pickUniqueNumbersInRange(
-                START_NUMBER_OF_RANGE.getValue(), END_NUMBER_OF_RANGE.getValue(), LOTTO_SIZE.getValue()
-        );
-        return new ArrayList<>(beforeSorted);
+        allLottos = new Lottos(allLottos.addLottos(getSortedRandomNumber()));
+        return allLottos;
     }
 
     public void getRightLuckyNumbers() {
@@ -116,7 +88,7 @@ public class LottoGame {
     }
 
     public void calculateStatistics() {
-        statistics.temp(lottos, luckyNumbers, bonusNumber);
+        statistics.temp(allLottos, luckyNumbers, bonusNumber);
     }
 
     public void printOutStatistics() {
@@ -124,7 +96,7 @@ public class LottoGame {
     }
 
     public void printOutProfitRatio() {
-        statistics.printOutProfitRatio(lottoPurchaser.getCost());
+        statistics.printOutProfitRatio(allLottos.getTotalCost());
     }
 
 }
