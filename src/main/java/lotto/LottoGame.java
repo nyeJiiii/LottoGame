@@ -1,5 +1,9 @@
 package lotto;
 
+import static lotto.output.LottoValue.END_NUMBER_OF_RANGE;
+import static lotto.output.LottoValue.LOTTO_SIZE;
+import static lotto.output.LottoValue.START_NUMBER_OF_RANGE;
+
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -55,9 +59,10 @@ public class LottoGame {
         return randomNumber;
     }
 
-    // TODO 숫자 상수로 빼기
     private List<Integer> getRandomNumber() {
-        List<Integer> beforeSorted = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> beforeSorted = Randoms.pickUniqueNumbersInRange(
+                START_NUMBER_OF_RANGE.getValue(), END_NUMBER_OF_RANGE.getValue(), LOTTO_SIZE.getValue()
+        );
         return new ArrayList<>(beforeSorted);
     }
 
@@ -73,7 +78,6 @@ public class LottoGame {
             luckyNumbers = new Lotto(Console.readLine());
             return true;
         } catch (IllegalArgumentException e) {
-
             System.out.println(e.getMessage());
             return false;
         }
@@ -109,8 +113,7 @@ public class LottoGame {
         statistics.temp(lottos, luckyNumbers, bonusNumber);
     }
 
-    // TODO 메서드 이름 변경
-    public void print() {
+    public void printOutStatistics() {
         System.out.println(statistics);
     }
 

@@ -23,7 +23,7 @@ public class Application {
 
         System.out.println(OutputView.STATISTICS.getMessage());
         lottoGame.calculateStatistics();
-        lottoGame.print();
+        lottoGame.printOutStatistics();
 
         lottoGame.printOutProfitRatio();
     }
