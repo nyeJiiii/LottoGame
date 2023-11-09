@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoPurchaserTest {
 
-    LottoPurchaser lm = LottoPurchaser.getInstance();
+    LottoPurchaser lm = new LottoPurchaser();
 
     @ParameterizedTest
     @ValueSource(strings = {"k", "1.2"})

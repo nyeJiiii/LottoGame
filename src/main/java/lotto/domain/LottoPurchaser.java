@@ -4,20 +4,8 @@ import lotto.output.OutputView;
 
 public class LottoPurchaser extends Validator {
 
-    private static LottoPurchaser lottoPurchaser;
-
     private int numberOfLottos;
     private int cost;
-
-    private LottoPurchaser() {
-    }
-
-    public static LottoPurchaser getInstance() {
-        if (lottoPurchaser == null) {
-            lottoPurchaser = new LottoPurchaser();
-        }
-        return lottoPurchaser;
-    }
 
     public int getNumberOfLottos() {
         return numberOfLottos;
@@ -27,6 +15,7 @@ public class LottoPurchaser extends Validator {
         return cost;
     }
 
+    // TODO 1000변경
     public void setNumberOfLottos(String cost) {
         int integerCost = parseInt(cost);
         isSmallerthanZero(integerCost);
@@ -35,11 +24,7 @@ public class LottoPurchaser extends Validator {
         this.numberOfLottos = integerCost / 1000;
     }
 
-    public boolean checkNumberOfLottos() {
-        return this.numberOfLottos > 0;
-    }
-
-    public String printOutNumberOfLottos() {
+    public String returnNumberOfLottos() {
         return this.numberOfLottos + OutputView.NUMBER_OF_LOTTOS.getMessage();
     }
 

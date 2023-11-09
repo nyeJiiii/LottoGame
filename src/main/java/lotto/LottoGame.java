@@ -21,25 +21,31 @@ import lotto.errors.ErrorMessage;
 
 public class LottoGame {
 
-
-    LottoPurchaser lottoPurchaser = LottoPurchaser.getInstance();
+    LottoPurchaser lottoPurchaser = new LottoPurchaser();
     BonusNumber bonusNumber = new BonusNumber();
+    Statistics statistics = new Statistics();
     Lotto luckyNumbers = null;
     Lottos lottos = null;
-    Statistics statistics = new Statistics();
 
     public void getRightCost() {
+        boolean fail;
         do {
-            getCost();
-        } while (!lottoPurchaser.checkNumberOfLottos());
+            fail = getCost();
+        } while (fail);
     }
 
-    private void getCost() {
+    private boolean getCost() {
         try {
             lottoPurchaser.setNumberOfLottos(Console.readLine());
+            return false;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+            return true;
         }
+    }
+
+    public void printOutNumberOfLottos() {
+        System.out.println(lottoPurchaser.returnNumberOfLottos());
     }
 
     public Lottos createLottos() {
