@@ -73,37 +73,37 @@ public class LottoGame {
     }
 
     public void getRightLuckyNumbers() {
-        boolean success = false;
+        boolean fail;
         do {
-            success = getLuckyNumbers();
-        } while (success == false);
+            fail = getLuckyNumbers();
+        } while (fail);
     }
 
     private boolean getLuckyNumbers() {
         try {
             luckyNumbers = new Lotto(Console.readLine());
-            return true;
+            return false;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return false;
+            return true;
         }
     }
 
     public void getRightBonusNumber() {
-        boolean success;
+        boolean fail;
         do {
-            success = getBonusNumber();
-        } while (success == false);
+            fail = getBonusNumber();
+        } while (fail);
     }
 
     private boolean getBonusNumber() {
         try {
             bonusNumber.setBonusNumber(Console.readLine());
             checkDuplicatedBonusNumber(bonusNumber, luckyNumbers.getNumbers());
-            return true;
+            return false;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return false;
+            return true;
         }
     }
 
