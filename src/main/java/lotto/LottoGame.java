@@ -74,7 +74,7 @@ public class LottoGame {
     }
 
     public void calculateStatistics() {
-        statistics.temp(allLottos, luckyNumbers, bonusNumber);
+        statistics.setStatistics(allLottos, luckyNumbers, bonusNumber);
     }
 
     public void printOutStatistics() {

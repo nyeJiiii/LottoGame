@@ -15,43 +15,41 @@ public class Statistics {
     private int fourth = 0;
     private int fifth = 0;
 
-    // TODO 메서드 이름 변경
-    public void temp(Lottos lottos, Lotto lotto, BonusNumber bonusNumber) {
-        List<Lotto> allLottos = lottos.getAllLottos();
-        for (Lotto temp : allLottos) {
-            int matchedNumber = countMatchingNumbers(temp.getNumbers(), lotto.getNumbers());
-            countRank(matchedNumber, temp.getNumbers(), bonusNumber);
+    public void setStatistics(Lottos lottos, Lotto luckyNumber, BonusNumber bonusNumber) {
+        for (Lotto allLottos : lottos.getAllLottos()) {
+            int matchedNumber = countMatchingNumbers(allLottos.getNumbers(), luckyNumber.getNumbers());
+            countRank(matchedNumber, allLottos.getNumbers(), bonusNumber);
         }
     }
 
-    private void countRank(int matchedNumber, List<Integer> numbers, BonusNumber bonusNumber) {
-        if (matchedNumber == 3) {
+    private int countMatchingNumbers(List<Integer> allLottos, List<Integer> luckyNumber) {
+        return (int) allLottos.stream()
+                .filter(luckyNumber::contains)
+                .count();
+    }
+
+    private void countRank(int matchedNumber, List<Integer> allLottos, BonusNumber bonusNumber) {
+        if (matchedNumber == LottoPrize.FIFTH.getCount()) {
             fifth++;
         }
-        if (matchedNumber == 4) {
+        if (matchedNumber == LottoPrize.FOURTH.getCount()) {
             fourth++;
         }
-        if (matchedNumber == 5) {
+        if (matchedNumber == LottoPrize.THIRD.getCount()) {
             third++;
-            checkBonusNumber(numbers, bonusNumber);
+            checkBonusNumber(allLottos, bonusNumber);
         }
-        if (matchedNumber == 6) {
+        if (matchedNumber == LottoPrize.FIRST.getCount()) {
             first++;
         }
     }
 
-    private void checkBonusNumber(List<Integer> numbers, BonusNumber bonusNumber) {
-        if (numbers.stream()
+    private void checkBonusNumber(List<Integer> allLottos, BonusNumber bonusNumber) {
+        if (allLottos.stream()
                 .anyMatch(number -> Objects.equals(number, bonusNumber.getBonusNumber()))) {
             second++;
             third--;
         }
-    }
-
-    private int countMatchingNumbers(List<Integer> numbers1, List<Integer> numbers2) {
-        return (int) numbers1.stream()
-                .filter(numbers2::contains)
-                .count();
     }
 
     public int calculateprofits() {
@@ -65,11 +63,7 @@ public class Statistics {
         return profits;
     }
 
-    public void printOutProfitRatio(int cost) {
-        System.out.printf(OutputView.TOTAL_PROFIT_RATIO.getMessage(), calculateProfitRatio(cost));
-    }
-
-    public double calculateProfitRatio(int cost) {
+    private double calculateProfitRatio(int cost) {
         int profit = calculateprofits();
         double profitRatio = ((double) profit / (cost)) * 100;
         BigDecimal bd = new BigDecimal(profitRatio);
@@ -83,5 +77,9 @@ public class Statistics {
         System.out.println(LottoPrize.THIRD + " - " + third + "개");
         System.out.println(LottoPrize.SECOND + " - " + second + "개");
         System.out.println(LottoPrize.FIRST + " - " + first + "개");
+    }
+
+    public void printOutProfitRatio(int cost) {
+        System.out.printf(OutputView.TOTAL_PROFIT_RATIO.getMessage(), calculateProfitRatio(cost));
     }
 }
