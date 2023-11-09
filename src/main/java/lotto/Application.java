@@ -4,7 +4,6 @@ import lotto.util.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-
         LottoGame lottoGame = new LottoGame();
 
         System.out.println(OutputView.INPUT_COST.getMessage());
@@ -20,9 +19,6 @@ public class Application {
         lottoGame.getRightBonusNumber();
 
         System.out.println(OutputView.STATISTICS.getMessage());
-        lottoGame.calculateStatistics();
-        lottoGame.printOutStatistics();
-        lottoGame.printOutProfitRatio();
-
+        lottoGame.printOutResult();
     }
 }

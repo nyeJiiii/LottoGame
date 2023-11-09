@@ -73,15 +73,21 @@ public class LottoGame {
         }
     }
 
-    public void calculateStatistics() {
+    public void printOutResult() {
+        calculateStatistics();
+        printOutStatistics();
+        printOutProfitRatio();
+    }
+
+    private void calculateStatistics() {
         statistics.setStatistics(allLottos, luckyNumbers, bonusNumber);
     }
 
-    public void printOutStatistics() {
+    private void printOutStatistics() {
         statistics.printOutStatistics();
     }
 
-    public void printOutProfitRatio() {
+    private void printOutProfitRatio() {
         statistics.printOutProfitRatio(allLottos.getTotalCost());
     }
 

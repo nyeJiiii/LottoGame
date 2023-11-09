@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.domain.Validator.isRightCost;
-import static lotto.domain.Validator.isSmallerthanZero;
-import static lotto.domain.Validator.parseInt;
+import static lotto.exception.Validator.isRightCost;
+import static lotto.exception.Validator.isSmallerthanZero;
+import static lotto.exception.Validator.parseInt;
 import static lotto.util.RandomNumber.getSortedRandomNumber;
 
 import java.util.ArrayList;

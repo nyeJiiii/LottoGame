@@ -1,4 +1,4 @@
-package lotto.errors;
+package lotto.exception;
 
 public interface MainErrorMessage {
     String START_ERROR_MESSAGE = "[ERROR] ";

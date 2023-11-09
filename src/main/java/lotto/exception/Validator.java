@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.exception;
 
 import static lotto.util.LottoValue.COST_OF_LOTTO;
 import static lotto.util.LottoValue.END_NUMBER_OF_RANGE;
@@ -7,7 +7,6 @@ import static lotto.util.LottoValue.START_NUMBER_OF_RANGE;
 
 import java.util.List;
 import java.util.Objects;
-import lotto.errors.ErrorMessage;
 
 public class Validator {
 

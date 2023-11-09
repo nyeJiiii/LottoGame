@@ -1,9 +1,9 @@
 package lotto.domain;
 
-import static lotto.domain.Validator.parseInt;
-import static lotto.domain.Validator.validate;
-import static lotto.domain.Validator.validateDuplicatedNumber;
-import static lotto.domain.Validator.validateRangeOfNumbers;
+import static lotto.exception.Validator.parseInt;
+import static lotto.exception.Validator.validate;
+import static lotto.exception.Validator.validateDuplicatedNumber;
+import static lotto.exception.Validator.validateRangeOfNumbers;
 
 import java.util.Arrays;
 import java.util.List;
