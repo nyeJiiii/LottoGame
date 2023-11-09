@@ -1,7 +1,5 @@
 package lotto;
 
-import static lotto.util.RandomNumber.getSortedRandomNumber;
-
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.Objects;
@@ -15,8 +13,8 @@ public class LottoGame {
 
     BonusNumber bonusNumber = new BonusNumber();
     Statistics statistics = new Statistics();
+    Lottos allLottos = new Lottos();
     Lotto luckyNumbers = null;
-    Lottos allLottos = null;
 
     public void getRightCost() {
         boolean fail;
@@ -40,7 +38,7 @@ public class LottoGame {
     }
 
     public Lottos createLottos() {
-        allLottos = new Lottos(allLottos.addLottos(getSortedRandomNumber()));
+        allLottos.setAllLottos();
         return allLottos;
     }
 

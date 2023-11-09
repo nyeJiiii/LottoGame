@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.util.RandomNumber.getSortedRandomNumber;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -7,13 +10,9 @@ import lotto.util.OutputView;
 
 public class Lottos extends Validator {
 
-    private final List<Lotto> allLottos;
+    private List<Lotto> allLottos;
     private int numberOfLottos;
     private int totalCost;
-
-    public Lottos(List<Lotto> allLottos) {
-        this.allLottos = allLottos;
-    }
 
     public List<Lotto> getAllLottos() {
         return allLottos;
@@ -23,10 +22,11 @@ public class Lottos extends Validator {
         return totalCost;
     }
 
-    public List<Lotto> addLottos(List<Integer> numbers) {
-        return IntStream.range(0, numberOfLottos)
-                .mapToObj(i -> new Lotto(numbers))
-                .collect(Collectors.toList());
+    public void setAllLottos() {
+        List<Lotto> lottos = new ArrayList<>();
+        IntStream.range(0, numberOfLottos)
+                .forEach(i -> lottos.add(new Lotto(getSortedRandomNumber())));
+        this.allLottos = lottos;
     }
 
     public void setNumberOfLottos(String input) {
